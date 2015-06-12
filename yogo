@@ -1,0 +1,141 @@
+
+#Arguments
+action=$1
+nameapp=$2
+stylus=$3
+
+if [ ${nameapp:-0} == 0 ]; then
+  printf "Enter your name app: "
+  read nameapp
+  action=new
+  echo "\n"
+else
+  echo "\n"
+fi
+
+
+
+#Colores
+BLUE='\033[1;36m'
+NC='\033[0m'
+
+saycreate(){
+  echo "\t${BLUE}create${NC} : ${nameapp}${1}"
+}
+
+createapp(){
+  #Public directory
+
+  base=${PWD}/${nameapp}
+  public=/public
+  p=${base}${public}
+  i=/includes
+  index=/index.php
+  css=/css
+  cssfile=/styles.css
+  stylusfile=/styles.styl
+  footer=/footer.php
+  head=/head.php
+  header=/header.php
+  menu=/menu.php
+  js=/js
+  jsfile=/main.js
+  images=/images
+  icons=/icons
+  ajax=/ajax
+  files=/files
+  foundation=/foundation.css
+  normalize=normalize.css
+
+#Create base directory
+  mkdir ${nameapp}
+  echo "\t${BLUE}create${NC} : ${nameapp}"
+
+#Index file
+  cp -R /usr/local/jorge/index.php ${base}
+  saycreate /index.php
+
+  mkdir ${p}/
+  saycreate ${public}
+
+#CSS directory
+  mkdir ${p}${css}/
+  saycreate ${public}${css}
+
+#CSS files
+  touch ${p}${css}${cssfile}
+  saycreate ${public}${css}${cssfile}
+
+#CSS foundation
+  cp -R /usr/local/jorge/foundation.css ${base}${public}${css}
+  saycreate ${public}${css}${foundation}
+
+#CSS normalize
+  cp -R /usr/local/jorge/normalize.css ${base}${public}${css}
+  saycreate ${public}${css}${normalize}
+
+
+#Javascript directory
+  mkdir ${p}${js}/
+  saycreate ${public}${js}
+
+#Javascript files
+  touch ${p}${js}${jsfile}
+  saycreate ${public}${js}${jsfile}
+
+
+#Javascript directory
+  mkdir ${p}${images}/
+  saycreate ${public}${images}
+
+#Includes directory
+  mkdir ${nameapp}${i}/
+  saycreate ${i}/
+
+#Partials directory
+  touch ${base}${i}${footer}
+  saycreate ${i}${footer}
+
+#Partials directory
+  touch ${base}${i}${header}
+  saycreate ${i}${header}
+
+#Partials directory
+  touch ${base}${i}${head}
+  saycreate ${i}${head}
+
+#Partials directory
+  touch ${base}${i}${menu}
+  saycreate ${i}${menu}
+
+#Mandrill
+  mkdir ${nameapp}${i}/Mandrill
+  saycreate /mandrill
+  cp -R /usr/local/jorge/Mandrill ${base}${i}/Mandrill
+  saycreate /mandrill/Mandrill
+  cp -R /usr/local/jorge/Mandrill.php ${base}${i}/Mandrill
+  saycreate /Mandrill.php
+
+#jQuery
+  cp -R /usr/local/jorge/jquery.js ${base}${public}${js}
+  saycreate ${public}/jquery.js
+
+
+#Ajax file
+  mkdir ${p}${ajax}/
+  saycreate ${public}/ajax/
+
+#CSS files
+  touch ${p}${css}${stylusfile}
+  saycreate ${public}${css}${stylusfile}
+  #stylus -w ${p}${css}${stylusfile}
+}
+
+if [ ${action:-0} = new ]; then
+    if [ ${nameapp:-0} != 0 ]; then
+      createapp
+    fi
+else
+  echo "hola"
+fi
+echo "\n"
