@@ -1,10 +1,12 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <title>Conquistando Sonrisas</title>
-    <?php include 'includes/head.php'; ?>
+    <title>%s</title>
+    <?php include 'includes/partials/head.php'; ?>
   </head>
   <body>
-    <?php include 'includes/header.php'; ?>
-    <?php include 'includes/footer.php'; ?>
+    <?php include 'includes/partials/header.php'; ?>
+    <?php include 'includes/partials/footer.php'; ?>
+    <?php include 'includes/partials/scripts.php'; ?>
   </body>
 </html>
