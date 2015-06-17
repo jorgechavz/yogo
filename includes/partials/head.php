@@ -5,3 +5,6 @@
 <link rel="stylesheet" href="public/css/dist/styles.min.css">
 <link rel="stylesheet" href="public/css/dist/normalize.min.css">
 <link rel="stylesheet" href="public/css/dist/foundation.min.css">
+<!--[if IE]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->

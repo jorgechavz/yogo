@@ -2,7 +2,7 @@
 BLUE='\033[1;36m'
 NC='\033[0m'
 pathdir="/usr/local/jorge/"
-includes=${pathdir}"/includes"
+includes=${pathdir}"/includes/"
 nameapp=""
 base=""
 
@@ -20,13 +20,13 @@ function createFooter(){
 }
 
 function createHeader(){
-  header="$(cat ${pathdir}includes/partials/header.php)"
+  header="$(cat ${includes}partials/header.php)"
   printf "$header" "$*" > ${base}/"includes/partials/header.php"
   saycreate "/includes/partials/header.php"
 }
 
 function createMenu(){
-  menu="$(cat ${pathdir}includes/partials/menu.php)"
+  menu="$(cat ${includes}partials/menu.php)"
   printf "$menu" "$*" > ${base}/"includes/partials/menu.php"
   saycreate "/includes/partials/menu.php"
 }
@@ -52,17 +52,26 @@ function new(){
   read -r nameapp
   base=${PWD}/${nameapp}
   moveFiles
-  stylus $nameapp/public/css/dev/styles.styl
+  stylus $nameapp/public/css/dev/styles.styl &> /dev/null
   createPackage $nameapp
   cd $nameapp
-  npm install
-  grunt
-  ..
+  echo "\t${BLUE}Installing${NC} : dependencies"
+  npm install &> /dev/null
+  grunt &> /dev/null
+  echo "\t${BLUE}Running${NC} : grunt"
+  sleep 0.5
   createIndex $nameapp
   createHeader $nameapp
   createMenu $nameapp
   createFooter $nameapp
+}
 
+function create(){
+  vista="$(cat ${pathdir}vista.php)"
+  sleep 0.5
+  touch ${1}.php
+  printf "$vista" "$*" > ${1}".php"
+  saycreate ${view}".php"
 }
 
 function copy_wdir() {
@@ -81,9 +90,13 @@ do
   case $parametro in
      'new')
         new
+        open -a /Applications/Google\ Chrome.app 'http://localhost/'$nameapp
         exit 0
      ;;
      'create')
+       printf 'Enter your View name: '
+       read view
+       create $view
       exit 0
      ;;
      *)
