@@ -1,4 +1,4 @@
-<meta name="charset">
+<meta charset="UTF-8">
 <link rel="icon" href="public/images/favicon.png" type="image/png" />
 <meta name="author" content="Jorge Chavez">
 <meta name="viewport" content="width=device-width, user-scalable=no">
