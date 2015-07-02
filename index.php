@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en_mx">
   <head>
     <title>%s</title>
     <?php include 'includes/partials/head.php'; ?>

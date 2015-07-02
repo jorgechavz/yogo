@@ -55,10 +55,10 @@ function new(){
   stylus $nameapp/public/css/dev/styles.styl &> /dev/null
   createPackage $nameapp
   cd $nameapp
-  echo "\t${BLUE}Installing${NC} : dependencies"
-  npm install &> /dev/null
-  grunt &> /dev/null
-  echo "\t${BLUE}Running${NC} : grunt"
+  #echo "\t${BLUE}Installing${NC} : dependencies"
+  #npm install &> /dev/null
+  #grunt &> /dev/null
+  #echo "\t${BLUE}Running${NC} : grunt"
   sleep 0.5
   createIndex $nameapp
   createHeader $nameapp
@@ -91,6 +91,7 @@ do
      'new')
         new
         open -a /Applications/Google\ Chrome.app 'http://localhost/'$nameapp
+        atom $base
         exit 0
      ;;
      'create')
