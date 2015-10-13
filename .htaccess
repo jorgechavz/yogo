@@ -1,0 +1,11 @@
+Options -Multiviews
+AddHandler cgi-script .pl
+Options ExecCGI FollowSymlinks
+DirectoryIndex index.php index.html
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>
+Options +FollowSymLinks
+RewriteEngine On
+RewriteRule ^inicio$ ./index.php [QSA,L]

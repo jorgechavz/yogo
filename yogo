@@ -38,8 +38,8 @@ function createPackage(){
 }
 
 function moveFiles(){
-  copy_wdir ${pathdir}package.json ${base}/package.json
-  copy_wdir ${pathdir}Gruntfile.js ${base}/Gruntfile.js
+  #copy_wdir ${pathdir}.htaccess ${base}/.htaccess
+  #copy_wdir ${pathdir}package.json ${base}/package.json
   copy_wdir ${pathdir}includes ${base}/includes
   copy_wdir ${pathdir}public ${base}/public
 }
@@ -47,13 +47,14 @@ function moveFiles(){
 function borrarpantalla(){
   clear
 }
+
 function new(){
   printf 'Enter your App name: '
   read -r nameapp
   base=${PWD}/${nameapp}
   moveFiles
   stylus $nameapp/public/css/dev/styles.styl &> /dev/null
-  createPackage $nameapp
+  #createPackage $nameapp
   cd $nameapp
   #echo "\t${BLUE}Installing${NC} : dependencies"
   #npm install &> /dev/null
@@ -98,6 +99,10 @@ do
        printf 'Enter your View name: '
        read view
        create $view
+      exit 0
+     ;;
+     'edit')
+       atom /usr/local/jorge
       exit 0
      ;;
      *)
