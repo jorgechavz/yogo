@@ -1,7 +1,7 @@
 #Colores
 BLUE='\033[1;36m'
 NC='\033[0m'
-pathdir="/usr/local/jorge/"
+pathdir=$YOGO/
 includes=${pathdir}"/includes/"
 nameapp=""
 base=""
@@ -31,15 +31,9 @@ function createMenu(){
   saycreate "/includes/partials/menu.php"
 }
 
-function createPackage(){
-  package="$(cat ${pathdir}package.json)"
-  printf "$package" "$*" > ${base}/"package.json"
-  saycreate "/package.json"
-}
-
 function moveFiles(){
-  #copy_wdir ${pathdir}.htaccess ${base}/.htaccess
-  #copy_wdir ${pathdir}package.json ${base}/package.json
+  echo ${pathdir}.htaccess
+  copy_wdir ${pathdir}.htaccess ${base}/.htaccess
   copy_wdir ${pathdir}includes ${base}/includes
   copy_wdir ${pathdir}public ${base}/public
 }
@@ -54,12 +48,7 @@ function new(){
   base=${PWD}/${nameapp}
   moveFiles
   stylus $nameapp/public/css/dev/styles.styl &> /dev/null
-  #createPackage $nameapp
   cd $nameapp
-  #echo "\t${BLUE}Installing${NC} : dependencies"
-  #npm install &> /dev/null
-  #grunt &> /dev/null
-  #echo "\t${BLUE}Running${NC} : grunt"
   sleep 0.5
   createIndex $nameapp
   createHeader $nameapp
@@ -99,10 +88,6 @@ do
        printf 'Enter your View name: '
        read view
        create $view
-      exit 0
-     ;;
-     'edit')
-       atom /usr/local/jorge
       exit 0
      ;;
      *)
