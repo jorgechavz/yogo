@@ -9,7 +9,8 @@ Run this command in order to create a new skeleton
 * Add this line to your **.zshrc** file. (oh-my-zsh)
 
 ```
-alias yogo="/usr/local/bin/yogo/yogo"
+export YOGO=/usr/local/bin/yogo
+alias yogo=$YOGO/yogo/yogo"
 
 ```
 
