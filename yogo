@@ -47,7 +47,6 @@ function new(){
   read -r nameapp
   base=${PWD}/${nameapp}
   moveFiles
-  stylus $nameapp/public/css/dev/styles.styl &> /dev/null
   cd $nameapp
   sleep 0.5
   createIndex $nameapp
@@ -79,8 +78,7 @@ for parametro in $*
 do
   case $parametro in
      'new')
-        new
-        open -a /Applications/Google\ Chrome.app 'http://localhost/'$nameapp
+        new        
         atom $base
         exit 0
      ;;
