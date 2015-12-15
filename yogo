@@ -31,8 +31,7 @@ function createMenu(){
   saycreate "/includes/partials/menu.php"
 }
 
-function moveFiles(){
-  echo ${pathdir}.htaccess
+function moveFiles(){  
   copy_wdir ${pathdir}.htaccess ${base}/.htaccess
   copy_wdir ${pathdir}includes ${base}/includes
   copy_wdir ${pathdir}public ${base}/public
@@ -78,7 +77,7 @@ for parametro in $*
 do
   case $parametro in
      'new')
-        new        
+        new
         atom $base
         exit 0
      ;;
