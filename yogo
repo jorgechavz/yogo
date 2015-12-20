@@ -1,26 +1,24 @@
-#Colores
+#Colors
 BLUE='\033[1;36m'
+YELLOW='\033[1;33m'
 NC='\033[0m'
 pathdir=$YOGO/
 includes=${pathdir}"/includes/"
-nameapp=""
+appname=""
 base=""
 
-
-
-
 function showHelp(){
-usage="usage: $(basename "$0") <command> <name> -- program to build a basic website skeleton.
+  usage="usage: $(basename "$0") <command> <name> -- program to build a basic website skeleton.
 
-Commands:
+  Commands:
 
-  new       Create a new app
-  create    Create a new view for an existing app
+    ${BLUE}new${NC}       Create a new app
+    ${BLUE}create${NC}    Create a new view for an existing app
 
-Name:
-  Depending of which command are you using, it name either the app or the view.
-  "
-  echo "${usage}"
+  Name:
+    Depending of which command are you using, it name either the app or the view.
+    "
+    echo "${usage}"
 }
 
 function createIndex(){
@@ -54,28 +52,37 @@ function moveFiles(){
   copy_wdir ${pathdir}public ${base}/public
 }
 
-function borrarpantalla(){
-  clear
-}
-
 function new(){
-  nameapp=$1
-  base=${PWD}/${nameapp}
+  appname=$1
+  base=${PWD}/${appname}
   moveFiles
-  cd $nameapp
+  cd $appname
   sleep 0.5
-  createIndex $nameapp
-  createHeader $nameapp
-  createMenu $nameapp
-  createFooter $nameapp
+  createIndex $appname
+  createHeader $appname
+  createMenu $appname
+  createFooter $appname
 }
 
 function create(){
-  vista="$(cat ${pathdir}vista.php)"
-  sleep 0.5
-  touch ${1}.php
-  printf "$vista" "$*" > ${1}".php"
-  saycreate ${1}".php"
+  if [ -f ${pwd}${1}.php ]
+    then
+      echo "${YELLOW}There is a view with the same name already.${NC}"
+    else
+      vista="$(cat ${pathdir}vista.php)"
+      sleep 0.5
+      touch ${1}.php
+      printf "$vista" "$*" > ${1}".php"
+      saycreate ${1}".php"
+      addViewTohtaccess $1
+  fi
+}
+
+function addViewTohtaccess(){
+if [ -f $(pwd)/.htaccess ]
+  then  
+  echo "RewriteRule ^${1}$ ./${1}.php [QSA,L]" >> $(pwd)/.htaccess
+fi
 }
 
 function copy_wdir() {
@@ -84,22 +91,21 @@ function copy_wdir() {
 
 
 saycreate(){
-  echo "\t${BLUE}create${NC} : ${nameapp}${1}"
+  echo "\t${BLUE}create${NC} : ${appname}${1}"
   sleep 0.5
 }
 
-
-for parametro in $*
+for param in $*
 do
-  case $parametro in
+  case $param in
      'new')
         if [ $2 ]
           then
             new $2
           else
-            echo "Type you app name, try again."
+            echo "${YELLOW}Type you app name, try again.${NC}"
+            showHelp
         fi
-        atom $base
         exit 0
      ;;
      'create')
@@ -107,12 +113,13 @@ do
          then
            create $2
          else
-           echo "Type you app name, try again."
+           echo "${YELLOW}Type you view name, try again.${NC}"
+           showHelp
        fi
       exit 0
      ;;
      *)
-        #borrarpantalla
+        clear
         echo "Agregue comandos"
      ;;
   esac
