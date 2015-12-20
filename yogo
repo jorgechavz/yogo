@@ -31,7 +31,7 @@ function createMenu(){
   saycreate "/includes/partials/menu.php"
 }
 
-function moveFiles(){  
+function moveFiles(){
   copy_wdir ${pathdir}.htaccess ${base}/.htaccess
   copy_wdir ${pathdir}includes ${base}/includes
   copy_wdir ${pathdir}public ${base}/public
@@ -42,8 +42,7 @@ function borrarpantalla(){
 }
 
 function new(){
-  printf 'Enter your App name: '
-  read -r nameapp
+  nameapp=$1
   base=${PWD}/${nameapp}
   moveFiles
   cd $nameapp
@@ -77,7 +76,12 @@ for parametro in $*
 do
   case $parametro in
      'new')
-        new
+        if [ $2 ]
+          then
+            new $2
+          else
+            echo "Type you app name, try again."
+        fi
         atom $base
         exit 0
      ;;
