@@ -6,6 +6,23 @@ includes=${pathdir}"/includes/"
 nameapp=""
 base=""
 
+
+
+
+function showHelp(){
+usage="usage: $(basename "$0") <command> <name> -- program to build a basic website skeleton.
+
+Commands:
+
+  new       Create a new app
+  create    Create a new view for an existing app
+
+Name:
+  Depending of which command are you using, it name either the app or the view.
+  "
+  echo "${usage}"
+}
+
 function createIndex(){
   copy_wdir ${pathdir}index.php ${base}/index.php
   index="$(cat ${base}/index.php)"
@@ -95,8 +112,10 @@ do
       exit 0
      ;;
      *)
-        borrarpantalla
+        #borrarpantalla
         echo "Agregue comandos"
      ;;
   esac
+
 done
+showHelp
