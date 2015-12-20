@@ -58,7 +58,7 @@ function create(){
   sleep 0.5
   touch ${1}.php
   printf "$vista" "$*" > ${1}".php"
-  saycreate ${view}".php"
+  saycreate ${1}".php"
 }
 
 function copy_wdir() {
@@ -86,9 +86,12 @@ do
         exit 0
      ;;
      'create')
-       printf 'Enter your View name: '
-       read view
-       create $view
+       if [ $2 ]
+         then
+           create $2
+         else
+           echo "Type you app name, try again."
+       fi
       exit 0
      ;;
      *)
