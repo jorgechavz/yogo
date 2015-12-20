@@ -20,7 +20,7 @@ Create the skeleton with:
 
 ```
 
-$ yogo new
+$ yogo new myapp
 
 ```
 
@@ -28,7 +28,7 @@ $ yogo new
 Add a new view with:
 
 ```
-yogo create
+yogo create myview
 
 ```
 
