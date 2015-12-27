@@ -25,14 +25,14 @@ function createIndex(){
   copy_wdir ${pathdir}index.php ${base}/index.php
   index="$(cat ${base}/index.php)"
   printf "$index" "$*" > ${base}/"index.php"
-  saycreate "/index.php"
+  say "/index.php"
 }
 
 
 function createHeader(){
   header="$(cat ${includes}partials/header.php)"
   printf "$header" "$*" > ${base}/"includes/partials/header.php"
-  saycreate "/includes/partials/header.php"
+  say "/includes/partials/header.php"
 }
 
 
@@ -56,11 +56,11 @@ function create(){
     then
       echo "${YELLOW}There is a view with the same name already.${NC}"
     else
-      vista="$(cat ${pathdir}vista.php)"
+      view="$(cat ${pathdir}view.php)"
       sleep 0.5
       touch ${1}.php
-      printf "$vista" "$*" > ${1}".php"
-      saycreate ${1}".php"
+      printf "$view" "$*" > ${1}".php"
+      say ${1}".php"
       addViewTohtaccess $1
   fi
 }
@@ -77,7 +77,7 @@ function copy_wdir() {
 }
 
 
-saycreate(){
+say(){
   echo "\t${BLUE}create${NC} : ${appname}${1}"
   sleep 0.5
 }
@@ -107,9 +107,8 @@ do
      ;;
      *)
         clear
-        echo "Agregue comandos"
+        echo "Add an option"
      ;;
   esac
-
 done
 showHelp
