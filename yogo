@@ -28,11 +28,6 @@ function createIndex(){
   saycreate "/index.php"
 }
 
-function createFooter(){
-  footer="$(cat ${includes}partials/footer.php)"
-  printf "$footer" "$*" > ${base}/"includes/partials/footer.php"
-  saycreate "/includes/partials/footer.php"
-}
 
 function createHeader(){
   header="$(cat ${includes}partials/header.php)"
@@ -40,11 +35,6 @@ function createHeader(){
   saycreate "/includes/partials/header.php"
 }
 
-function createMenu(){
-  menu="$(cat ${includes}partials/menu.php)"
-  printf "$menu" "$*" > ${base}/"includes/partials/menu.php"
-  saycreate "/includes/partials/menu.php"
-}
 
 function moveFiles(){
   copy_wdir ${pathdir}.htaccess ${base}/.htaccess
@@ -59,9 +49,6 @@ function new(){
   cd $appname
   sleep 0.5
   createIndex $appname
-  createHeader $appname
-  createMenu $appname
-  createFooter $appname
 }
 
 function create(){
@@ -80,7 +67,7 @@ function create(){
 
 function addViewTohtaccess(){
 if [ -f $(pwd)/.htaccess ]
-  then  
+  then
   echo "RewriteRule ^${1}$ ./${1}.php [QSA,L]" >> $(pwd)/.htaccess
 fi
 }

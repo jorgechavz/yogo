@@ -1,7 +1,7 @@
-<footer id="%s-footer">
+<footer id="yogo-footer">
   <div class="row">
     <div class="large-12">
-      Footer
+      This skeleton was created by Yogo
     </div>
   </div>
 </footer>
