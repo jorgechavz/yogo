@@ -1,3 +1,9 @@
 $(document).ready(function(){
-  $("#yogo-header").height($(window).height());
+  setlayout();
+  $(window).resize(function() {
+    setlayout();
+  });
+  function setlayout(){
+    $("#yogo-header").height($(window).height());
+  }
 });
