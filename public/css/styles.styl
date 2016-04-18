@@ -101,6 +101,37 @@ h1,h2,h3,h4,h5,p
   margin 0
 // END RESET
 
+// EQUELINE
+.e-l
+  &.e-l-b
+    &:after
+      border-bottom 2px solid $naranja
+  &.e-l-small
+    &:after
+      width 10%
+  &.e-l-medium
+    &:after
+      width 30%
+  &.e-l-big
+    &:after
+      width 50%
+  &.e-l-full
+    &:after
+      width 100%
+  &.e-l-center
+    &:after
+      margin 10px auto !important
+  &:after
+    content ""
+    display block
+    margin 20px 0px
+
+//SPLIT 50%
+.block
+  display: inline-block
+  &.half
+    width: 50%
+
 #yogo
   &-menu
     display flex
