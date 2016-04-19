@@ -14,6 +14,7 @@ function showHelp(){
 
     ${BLUE}new${NC}       Create a new app
     ${BLUE}create${NC}    Create a new view for an existing app
+    ${BLUE}open${NC}      Open the aplication in Chrome
 
   Name:
     Depending of which command are you using, it name either the app or the view.
@@ -103,6 +104,13 @@ do
            echo "${YELLOW}Type you view name, try again.${NC}"
            showHelp
        fi
+      exit 0
+     ;;
+     'open')
+       current=$(pwd)
+       webs=$WEBS
+       url="http://localhost"${current#"$webs"}
+       open -a "/Applications/Google Chrome.app" ${url}
       exit 0
      ;;
      *)
