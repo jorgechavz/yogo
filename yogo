@@ -110,7 +110,7 @@ do
        current=$(pwd)
        webs=$WEBS
        url="http://localhost"${current#"$webs"}
-       open -a "/Applications/Google Chrome.app" ${url}
+       open ${url}
       exit 0
      ;;
      *)
