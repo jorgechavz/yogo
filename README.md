@@ -32,6 +32,13 @@ yogo create myview
 
 ```
 
+Open the app in the current directory
+
+```
+yogo open
+
+```
+
 # Author
 ----
 Jorge Chavez https://github.com/jorgechavz
